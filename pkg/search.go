@@ -11,7 +11,7 @@ import (
 // Translate takes query and its source lanuage
 // and converts to the targeted language
 // Translate("Hello", "en", "jp")
-func Translate(query, source, target string) interface{} {
+func Translate(query, source, target string, debugFlag bool) interface{} {
 	queryMap := map[string]string{
 		"q":      query,
 		"source": source,
@@ -30,6 +30,8 @@ func Translate(query, source, target string) interface{} {
 
 	json.NewDecoder(resp.Body).Decode(&res)
 
-	fmt.Println(res)
+	if debugFlag {
+		fmt.Println(res)
+	}
 	return res["translatedText"]
 }

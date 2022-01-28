@@ -33,6 +33,7 @@ func translate(cmd *cobra.Command, args []string) {
 	sourceFlag, _ := cmd.Flags().GetString("s")
 	outputFlag, _ := cmd.Flags().GetString("o")
 	fileFlag, _ := cmd.Flags().GetString("f")
+	debugFlag, _ := cmd.Flags().GetBool("d")
 
 	// opens the file if fileFlag (--f)
 	if fileFlag != "" {
@@ -55,7 +56,7 @@ func translate(cmd *cobra.Command, args []string) {
 		}
 	}
 
-	values := granslater.Translate(fullArgument, sourceFlag, outputFlag)
+	values := granslater.Translate(fullArgument, sourceFlag, outputFlag, debugFlag)
 	fmt.Println(values)
 }
 
@@ -63,4 +64,5 @@ func init() {
 	rootCmd.Flags().String("s", "en", "Source language")
 	rootCmd.Flags().String("o", "ru", "Output language")
 	rootCmd.Flags().String("f", "", "Translate a text file")
+	rootCmd.Flags().Bool("d", false, "Toggle debug log")
 }
