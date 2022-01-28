@@ -1,7 +1,7 @@
 Dead simple translator
 
 ```
-go install gitlab.com/lenivyyluitel/granslater
+go install gitlab.com/lenivyyluitel/granslater@latest
 ```
 or
 ```sh
