@@ -34,9 +34,11 @@ map[error:jp is not supported]
 <nil>
 
                    >>proper<<
-./granslater -o ru -s ja ヘロワールド -d true
-map[translatedText:Helloworld Торре]
-Helloworld Торре
+granslater -o ru -s ja ヘロワールド
+Русский
 
 
 ```
+
+NOTE: debug flag will append itself to the text that is translated and I have no idea why. So don't use unless
+there is no reponse
