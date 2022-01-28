@@ -30,10 +30,13 @@ func translate(cmd *cobra.Command, args []string) {
 
 	var fullArgument string
 
-	sourceFlag, _ := cmd.Flags().GetString("s")
-	outputFlag, _ := cmd.Flags().GetString("o")
-	fileFlag, _ := cmd.Flags().GetString("f")
-	debugFlag, _ := cmd.Flags().GetBool("d")
+	sourceFlag, err := cmd.Flags().GetString("source")
+	if err != nil {
+		fmt.Println(err)
+	}
+	outputFlag, _ := cmd.Flags().GetString("output")
+	fileFlag, _ := cmd.Flags().GetString("file")
+	debugFlag, _ := cmd.Flags().GetBool("debug")
 
 	// opens the file if fileFlag (--f)
 	if fileFlag != "" {
@@ -61,8 +64,8 @@ func translate(cmd *cobra.Command, args []string) {
 }
 
 func init() {
-	rootCmd.Flags().String("s", "en", "Source language")
-	rootCmd.Flags().String("o", "ru", "Output language")
-	rootCmd.Flags().String("f", "", "Translate a text file")
-	rootCmd.Flags().Bool("d", false, "Toggle debug log")
+	rootCmd.Flags().StringP("source", "s", "en", "Source language")
+	rootCmd.Flags().StringP("output", "o", "ru", "Output language")
+	rootCmd.Flags().StringP("file", "f", "", "Translate a text file")
+	rootCmd.Flags().BoolP("debug", "d", false, "Toggle debug log")
 }
